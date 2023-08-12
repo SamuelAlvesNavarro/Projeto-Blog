@@ -1,6 +1,5 @@
-
-CREATE DATABASE projetoblog;
-USE projetoblog;
+CREATE DATABASE blog;
+USE blog;
 
 
 CREATE TABLE usuario (
