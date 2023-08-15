@@ -10,7 +10,7 @@ function insere (string $entidade, array $dados) : bool
         $$campo = $dado;
     }
 
-    $instrucao = insert ($entidade, $coringa);
+    $instrucao = insert($entidade, $coringa);
 
     $conexao = conecta();
 

@@ -1,17 +1,31 @@
 <?php
 
+/*
+CREATE TABLE avaliacao (
+id int NOT NULL AUTO_INCREMENT,
+nota int NOT NULL,
+comentario varchar(255) NOT NULL,
+usuario_id int NOT NULL,
+post_id int NOT NULL,
+data_criacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id),
+CONSTRAINT fk_avaliacao_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id),
+CONSTRAINT fk_avaliacao_post FOREIGN KEY (post_id) REFERENCES post (id)
+);
+*/
+
 require_once '../includes/funcoes.php';
 require_once '../core/conexao_mysql.php';
 require_once '../core/sql.php';
 require_once '../core/mysql.php';
 
-insert_teste (5, 'bla bla', 15, 1, '2022-01-10'); 
+insert_teste(5, 'bla bla', 1, 1, 'now()'); 
 buscar_teste();
-update_teste (5, 'ok', 16, 2, '2022-01-10'); 
+update_teste (1, 2, 'ok', 16, 1, 'now()'); 
 buscar_teste();
 
 //Teste inserção banco de dados
-function insert_teste ($nota, $comentario, $usuario_id, $post_id, $data_criacao): void
+function insert_teste($nota, $comentario, $usuario_id, $post_id, $data_criacao): void
 {
     $dados = ['nota' => $nota, 'comentario' => $comentario, 'usuario_id' => $usuario_id, 'post_id' => $post_id, 'data_criacao' => $data_criacao]; 
     insere('avaliacao', $dados);
@@ -20,14 +34,14 @@ function insert_teste ($nota, $comentario, $usuario_id, $post_id, $data_criacao)
 //Teste select banco de dados
 function buscar_teste(): void
 {
-    $avaliacao = buscar('avaliacao', [ 'id', 'nota', 'comentario', 'usuario', 'post'], [], ''); 
+    $avaliacao = buscar('avaliacao', [ 'id', 'nota', 'comentario', 'usuario_id', 'post_id'], [], ''); 
     print_r($avaliacao);
 }
 
 //Teste update banco de dados
-function update_teste ($id, $nota, $comentario): void
+function update_teste($id, $nota, $comentario, $usuario_id, $post_id, $data_criacao): void
 {
-    $dados = ['nota' => $nota, 'comentario' => $comentario, 'usuario' => $comentario, 'post' => $comentario]; 
+    $dados = ['nota' => $nota, 'comentario' => $comentario, 'usuario_id' => $usuario_id, 'post_id' => $post_id, 'data_criacao' => $data_criacao]; 
     $criterio = [['id', '=', $id]];
     atualiza('avaliacao', $dados, $criterio);
 }
