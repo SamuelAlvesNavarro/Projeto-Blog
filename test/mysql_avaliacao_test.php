@@ -23,7 +23,7 @@ insert_teste(5, 'bla bla', 1, 1, 'now()');
 buscar_teste();
 update_teste (1, 2, 'ok', 16, 1, 'now()'); 
 buscar_teste();
-delete_teste('37');
+delete_teste(rand(37, 62));
 
 //Teste inserção banco de dados
 function insert_teste($nota, $comentario, $usuario_id, $post_id, $data_criacao): void
@@ -49,5 +49,6 @@ function update_teste($id, $nota, $comentario, $usuario_id, $post_id, $data_cria
 function delete_teste($id){
     $criterio = [['id', '=', $id]];
     deleta('avaliacao', $criterio);
+    
 }
 ?>

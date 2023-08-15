@@ -16,7 +16,7 @@ function insere (string $entidade, array $dados) : bool
 
     $stmt = mysqli_prepare($conexao, $instrucao);
 
-    eval('mysqli_stmt_bind_param($stmt, \''. implode('', $tipo). '\', $' . implode(', $', array_keys($dados)) . ');');
+    eval('mysqli_stmt_bind_param($stmt, \''. implode('', $tipo). '\', $' . implode(', $', array_keys($dados)) . ');'); // executa código php no servidor colocado por uma string
     
     mysqli_stmt_execute($stmt);
 
@@ -96,24 +96,24 @@ function deleta (string $entidade, array $criterio = []) : bool
 
     foreach ($criterio as $expressao) {
 
-        $dado = $expressao [count ($expressao) -1];
+        $dado = $expressao[count ($expressao) -1];
 
         $tipo [] = gettype ($dado) [0];
-        $expressao [count ($expressao) - 1] = '?';
+        $expressao[count ($expressao) - 1] = '?';
         $coringa_criterio[] = $expressao;
 
-        $nome_campo = (count ($expressao) <4) ? $expressao [0]: $expressao[1];
+        $nome_campo = (count ($expressao) < 4) ? $expressao [0]: $expressao[1];
 
         $campos_criterio[] = $nome_campo;
 
-        $$nome_campo = $dado;
+        $$nome_campo = $dado; // cria uma variável com o valor da variavel $nome_campo atribuindo $dado a ela
     }
 
     $instrucao = delete ($entidade, $coringa_criterio);
 
     $conexao = conecta();
 
-    $stmt = mysqli_prepare ($conexao, $instrucao);
+    $stmt = mysqli_prepare($conexao, $instrucao);
 
     if (isset($tipo)) {
         $comando = 'mysqli_stmt_bind_param($stmt, '; 

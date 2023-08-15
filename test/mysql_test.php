@@ -20,12 +20,12 @@ function insert_teste ($nome, $email, $senha): void
 //Teste select banco de dados
 function buscar_teste(): void
 {
-    $usuarios = buscar ('usuario', [ 'id', 'nome', 'email'], [], ''); 
+    $usuarios = buscar('usuario', [ 'id', 'nome', 'email'], [], ''); 
     print_r($usuarios);
 }
 
 //Teste update banco de dados
-function update_teste ($id, $nome, $email): void
+function update_teste($id, $nome, $email): void
 {
     $dados = ['nome' => $nome, 'email' => $email]; 
     $criterio = [['id', '=', $id]];
