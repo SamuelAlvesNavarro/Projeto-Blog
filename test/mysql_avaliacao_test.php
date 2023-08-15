@@ -23,6 +23,7 @@ insert_teste(5, 'bla bla', 1, 1, 'now()');
 buscar_teste();
 update_teste (1, 2, 'ok', 16, 1, 'now()'); 
 buscar_teste();
+delete_teste('37');
 
 //Teste inserção banco de dados
 function insert_teste($nota, $comentario, $usuario_id, $post_id, $data_criacao): void
@@ -34,7 +35,7 @@ function insert_teste($nota, $comentario, $usuario_id, $post_id, $data_criacao):
 //Teste select banco de dados
 function buscar_teste(): void
 {
-    $avaliacao = buscar('avaliacao', [ 'id', 'nota', 'comentario', 'usuario_id', 'post_id'], [], ''); 
+    $avaliacao = buscar('avaliacao', ['*'], [], ''); 
     print_r($avaliacao);
 }
 
@@ -44,5 +45,9 @@ function update_teste($id, $nota, $comentario, $usuario_id, $post_id, $data_cria
     $dados = ['nota' => $nota, 'comentario' => $comentario, 'usuario_id' => $usuario_id, 'post_id' => $post_id, 'data_criacao' => $data_criacao]; 
     $criterio = [['id', '=', $id]];
     atualiza('avaliacao', $dados, $criterio);
+}
+function delete_teste($id){
+    $criterio = [['id', '=', $id]];
+    deleta('avaliacao', $criterio);
 }
 ?>
