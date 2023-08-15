@@ -25,3 +25,15 @@ CREATE TABLE post (
     KEY fk_post_usuario_idx (usuario_id),
     CONSTRAINT fk_post_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id)
 );
+
+CREATE TABLE avaliacao (
+id int NOT NULL AUTO_INCREMENT,
+nota int NOT NULL,
+comentario varchar(255) NOT NULL,
+usuario_id int NOT NULL,
+post_id int NOT NULL,
+data_criacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id),
+CONSTRAINT fk_avaliacao_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id),
+CONSTRAINT fk_avaliacao_post FOREIGN KEY (post_id) REFERENCES post (id)
+);
