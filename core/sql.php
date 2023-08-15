@@ -10,7 +10,7 @@ function insert (string $entidade, array $dados): string{
 
     //UPDATE
 function update (string $entidade, array $dados, array $criterio = []): string{
-    $instrucao = "UPDATE ($entidade}";
+    $instrucao = "UPDATE {$entidade}";
 
     foreach ($dados as $campo => $dado){
         $set[] = "{$campo} = {$dado}";
