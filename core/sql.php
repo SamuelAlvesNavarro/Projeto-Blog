@@ -21,8 +21,9 @@ function update (string $entidade, array $dados, array $criterio = []): string{
 
     if (!empty($criterio)){
         $instrucao .= ' WHERE ';
+
         foreach ($criterio as $expressao) {
-        $instrucao .= implode(' ', $expressao);
+            $instrucao .= ' ' . implode(' ', $expressao);
         }
     }
     return $instrucao;
@@ -32,7 +33,7 @@ function update (string $entidade, array $dados, array $criterio = []): string{
 
 function delete (string $entidade, array $criterio = []) : string{
 
-    $instrucao = "DELETE FROM {$entidade}";
+    $instrucao = "DELETE /*FROM*/ {$entidade}";
 
     if (!empty($criterio)){
 
@@ -49,7 +50,7 @@ function delete (string $entidade, array $criterio = []) : string{
 
 function select (string $entidade, array $campos, array $criterio, string $ordem = null): string{
     
-    $instrucao = "SELECT ". implode(',' , $campos);
+    $instrucao = "SELECT ". implode(', ' , $campos);
     $instrucao.= " FROM {$entidade}";
 
     if (!empty($criterio)) {
@@ -57,7 +58,7 @@ function select (string $entidade, array $campos, array $criterio, string $ordem
             $instrucao .= ' WHERE ';
 
         foreach ($criterio as $expressao) {
-            $instrucao .= implode('', $expressao);
+            $instrucao .= ' '. implode(' ', $expressao);
         }
     }
 
