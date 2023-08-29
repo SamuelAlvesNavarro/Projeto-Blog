@@ -29,7 +29,7 @@
                         $id = (int) $_SESSION['login']['usuario']['id'];
                         
                         $criterio = [
-                            ['id', '', $id]
+                            ['id', '=', $id]
                         ];
                         
                         $retorno = buscar (
