@@ -4,7 +4,7 @@
     require_once 'conexao_mysql.php';
     require_once 'sql.php';
     require_once 'mysql.php';
-    $salt = 'exemplosaltifsp';
+    $salt = '$exemplosaltifsp';
 
     foreach($_POST as $indice => $dado){
         $$indice = limparDados($dado);
@@ -59,15 +59,16 @@
                 ['id', 'nome', 'email', 'senha', 'adm'],
                 $criterio
             );
-
+            print_r($retorno);
             if(count($retorno) > 0){
-                if(crypt($senha,$salt) == $retorno[0]['senha']){
+                //if(crypt($senha,$salt) == $retorno[0]['senha']){
                     $_SESSION['login']['usuario'] = $retorno[0];
                     if(!empty($_SESSION['url_retorno'])){
                         header('Location: '. $_SESSION['url_retorno']);
                         $_SESSION['url_retorno'] = '';
+                        exit;
                     }
-                }
+                //}
             }
 
             break;
@@ -76,7 +77,7 @@
             session_destroy();
             break;
 
-        case 'starus':
+        case 'status':
             $id = (int)$id;
             $valor = (int)$valor;
 
@@ -121,5 +122,5 @@
             break;
     }
 
-    header('Location: ../index.php')
+    //header('Location: ../index.php')
 ?>

@@ -3,5 +3,6 @@
     
     if (!isset($_SESSION['login'])) {
         header('Location:login_formulario.php');
+        exit;
     }
 ?>
