@@ -51,7 +51,7 @@ function delete (string $entidade, array $criterio = []) : string{
 function select (string $entidade, array $campos, array $criterio, string $ordem = null): string{
     
     $instrucao = "SELECT ". implode(', ' , $campos);
-    $instrucao.= " FROM {$entidade}";
+    $instrucao .= " FROM {$entidade}";
 
     if (!empty($criterio)) {
 
@@ -64,7 +64,7 @@ function select (string $entidade, array $campos, array $criterio, string $ordem
 
     if (!empty($ordem)) {
 
-        $instrucao .= " ORDER BY $ordem";
+        $instrucao .= " ORDER BY $ordem ";
     }
 
     return $instrucao;

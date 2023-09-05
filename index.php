@@ -78,7 +78,7 @@
                                 href="post_detalhe.php?post=<?php echo $post['id']?>">
                                     <strong><?php echo $post['titulo']?></strong>
                                     [<?php echo $post['nome'] ?>]
-                                    <span class="badge badge-dark"><?php echo $data ?></span>
+                                    <span class="badge badge-dark"><?php echo $data?></span>
                             </a>
                             <?php endforeach; ?>
                         </div>
