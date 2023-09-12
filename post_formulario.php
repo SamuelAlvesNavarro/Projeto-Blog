@@ -46,20 +46,20 @@
                         ?>
                         <h2>Post</h2>
                         <form method="post" action="core/post_repositorio.php">
-                            <input type="hidden" name="acao"
+                            <input required type="hidden" name="acao"
                                     value="<?php echo empty($id) ? 'insert': 'update' ?>">
-                            <input type="hidden" name="id"
+                            <input required type="hidden" name="id"
                                     value="<?php echo $entidade ['id'] ?? '' ?>">
                             <div class="form-group">
                                 <label for="titulo">Título</label>
                                 <input class="form-control" type="text"
-                                    require="required" id="titulo" name="titulo" 
+                                    required id="titulo" name="titulo" 
                                     value="<?php echo $entidade ['titulo'] ?? '' ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="texto ">Texto</label>
                                     <textarea class="form-control" type="text"
-                                        require="required" id="texto" name="texto" rows="5"> 
+                                        required id="texto" name="texto" rows="5"> 
                                         <?php echo $entidade ['texto'] ?? '' ?> 
                                     </textarea>
                                 </div>
@@ -74,14 +74,14 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <input class="form-control" type="date" 
-                                            require="required" 
+                                            required
                                             id="data_postagem" 
                                             name="data_postagem"
                                             value="<?php echo $data ?>">
                                         </div>
                                         <div class="col-md-3">
                                             <input class="form-control" type="time"
-                                                require="required" id="hora_postagem"
+                                                required id="hora_postagem"
                                                 name="hora_postagem"
                                                 value="<?php echo $hora ?>">
                                         </div>
