@@ -60,6 +60,7 @@
                                 'titulo',
                                 'data_postagem',
                                 'id',
+                                'usuario_id',
                                 '(select nome
                                     from usuario
                                     where usuario.id = post.usuario_id) as nome'
@@ -75,12 +76,23 @@
                                     $data = date_create($post['data_postagem']);
                                     $data = date_format($data, 'd/m/Y H:i:s');
                             ?>
-                            <a class="list-group-item list-group-item-action" 
-                                href="post_detalhe.php?post=<?php echo $post['id']?>">
-                                    <strong><?php echo $post['titulo']?></strong>
-                                    [<?php echo $post['nome'] ?>]
-                                    <span class="badge badge-dark"><?php echo $data?></span>
-                            </a>
+                            <div class="row m-3">
+                                <a class="list-group-item list-group-item-action col" 
+                                    href="post_detalhe.php?post=<?php echo $post['id']?>">
+                                        <strong><?php echo $post['titulo']?></strong>
+                                        [<?php echo $post['nome'] ?>]
+                                        <span class="badge badge-dark"><?php echo $data?></span>
+                                </a>
+
+                                <?php if(isset($_SESSION['login']['usuario']['id']) && $_SESSION['login']['usuario']['id'] == $post['usuario_id']):?>
+
+                                    <form action="core/post_repositorio.php" method="post">
+                                        <input type="hidden" name="acao" value="delete">
+                                        <input type="hidden" name="id" value="<?php echo $post['id'];?>">
+                                        <input type="submit" value="Excluir" class="btn btn-danger col">
+                                    </form>
+                            </div>
+                            <?php endif;?>
                             <?php endforeach; ?>
                         </div>
                     </div>
