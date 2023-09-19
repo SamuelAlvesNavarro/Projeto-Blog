@@ -29,19 +29,23 @@
                     foreach ($_GET as $indice => $dado){
                         $$indice = limparDados ($dado);
                     }
-
+                    $user = $_SESSION['login']['usuario']['id'];
                             if(!empty($id)){
                                 $id = (int)$id;
 
                                 $criterio = [
-                                    ['id', '=', $id]
+                                    ['id', '=', $id],
+                                    ['AND', 'usuario_id', '=', $user]
                                 ];
                                 $retorno = buscar(
                                     'post',
                                     ['*'],
                                     $criterio
                                 );
-                                $entidade = $retorno[0];
+                                if(isset($retorno[0])){
+                                    $entidade = $retorno[0];
+                                }
+                                
                             }
                         ?>
                         <h2>Post</h2>
@@ -58,8 +62,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="texto ">Texto</label>
-                                    <textarea class="form-control" type="text"
-                                        required id="texto" name="texto" rows="5"> 
+                                    <textarea required class="form-control" type="text"
+                                        id="texto" name="texto" rows="5"> 
                                         <?php echo $entidade ['texto'] ?? '' ?> 
                                     </textarea>
                                 </div>

@@ -48,7 +48,7 @@
                         if(!empty($busca)){
                             $criterio[] = [
                                 'AND',
-                                'texto',
+                                'titulo',
                                 'like',
                                 "%{$busca}%"
                             ];
@@ -76,8 +76,8 @@
                                     $data = date_create($post['data_postagem']);
                                     $data = date_format($data, 'd/m/Y H:i:s');
                             ?>
-                            <div class="row m-3">
-                                <a class="list-group-item list-group-item-action col" 
+                            <div class="row p-3">
+                                <a class="list-group-item list-group-item-action col-8" 
                                     href="post_detalhe.php?post=<?php echo $post['id']?>">
                                         <strong><?php echo $post['titulo']?></strong>
                                         [<?php echo $post['nome'] ?>]
@@ -86,13 +86,20 @@
 
                                 <?php if(isset($_SESSION['login']['usuario']['id']) && $_SESSION['login']['usuario']['id'] == $post['usuario_id']):?>
 
-                                    <form action="core/post_repositorio.php" method="post">
+                                    <form action="core/post_repositorio.php" method="post" class="col-2">
                                         <input type="hidden" name="acao" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $post['id'];?>">
-                                        <input type="submit" value="Excluir" class="btn btn-danger col">
+                                        <input type="submit" value="Excluir" class="btn btn-danger">
                                     </form>
+
+                                    <form action="post_formulario.php" method="get" class="col-2">
+                                        <input type="hidden" name="id" value="<?php echo $post['id'];?>">
+                                        <input type="submit" value="Alterar" class="btn btn-primary">
+                                    </form>
+                                    
+                                <?php endif;?>
                             </div>
-                            <?php endif;?>
+                            
                             <?php endforeach; ?>
                         </div>
                     </div>
